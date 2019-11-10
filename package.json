@@ -1,0 +1,14 @@
+{
+  "name": "dat-photos-app-master",
+  "version": "1.0.0",
+  "description": "This is a decentralized, peer-to-peer photos applicaton for the [Beaker browser](https://beakerbrowser.com).",
+  "main": "index.js",
+  "scripts": {
+    "patchup": "rm -rf patch/* && cables -c -i -d 'patch' -e vuwjzU"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@cables/cables": "^0.4.0"
+  }
+}

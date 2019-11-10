@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Photo gallery</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/header.css" />
+  <link rel="stylesheet" href="css/buttons.css" />
+  <link rel="stylesheet" href="css/prompt.css" />
+</head>
+
+<body>
+  <div id="prompt">
+    <div class="content">Loading...</div>
+  </div>
+  <!-- TODO put ellipsis in :after -->
+
+  <header>
+
+    <input type="text" name="friends" placeholder="Add your friends album!" id="friends">
+    <button class="add-friends-album btn primary">Submit</button>
+
+    <button class="create-album btn primary">Create album +</button>
+  </header>
+
+  <div class="albums-container">
+    <div class="create-album album" title="Create new album">
+      <div class="placeholder">+</div>
+      <div class="title">Create album</div>
+
+
+    </div>
+  </div>
+  <script src="js/index.js"></script>
+  <canvas id="glcanvas" width="100vw" height="100vh"></canvas>
+  <libs />
+  <script type="text/javascript" src="patch/js/patch.js"></script>
+  <script src="js/importCables.js"></script>
+</body>
+
+</html>
