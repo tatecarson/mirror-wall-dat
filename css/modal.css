@@ -1,0 +1,159 @@
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 15px;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.88);
+  -webkit-animation-duration: 0.35s;
+  animation-duration: 0.35s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  /* Modifiers */
+  /* States */
+}
+
+.modal__dialog {
+  position: relative;
+  /* max-width: 500px; */
+  width: 100%;
+  padding: 20px;
+  margin: auto;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.modal__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 0;
+  border: none;
+  color: #ccc;
+  background-color: transparent;
+  background-image: none;
+}
+
+.modal__close:focus {
+  outline: 0;
+}
+
+.modal__header {
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.modal__title {
+  margin: 0 0 15px;
+}
+
+.modal__content {
+  padding: 10px 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #555;
+}
+
+.modal__footer {
+  padding-top: 20px;
+  border-top: 1px solid #e2e2e2;
+  text-align: right;
+}
+
+.modal--fullscreen {
+  padding: 5px;
+}
+
+.modal--fullscreen .modal__dialog {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  border-radius: 0;
+}
+
+.modal.is-modal-active {
+  display: flex;
+}
+
+/* Animation */
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/*------------------------------------------------*/
+/* Unrelated styling, not for the typing indicator
+   Only using this for DEMO purposes  */
+/*------------------------------------------------*/
+body {
+  background-color: #f7f7f7;
+}
+
+.demo {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+
+.demo__card {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  border: 1px solid #e2e2e2;
+  background-color: #fff;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  color: #444;
+}
+
+.demo__title {
+  margin-top: 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e2e2e2;
+  font-size: 16px;
+}
+
+.demo__btn {
+  display: inline-block;
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #333;
+  background-color: transparent;
+  transition: all 0.25s linear;
+  margin-bottom: 10px;
+}
+
+.demo__btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.demo__btn:focus,
+.demo__btn:active {
+  outline: 0;
+}
+
+.demo__btn--secondary {
+  border: 1px solid #e2e2e2;
+}

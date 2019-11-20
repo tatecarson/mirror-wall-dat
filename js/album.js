@@ -46,7 +46,7 @@
 
   // events
 
-  function onShare () {
+  function onShare() {
     urlEl.select()
     document.execCommand('copy')
     updatePrompt(`<div id="close-prompt">Close</div><p>Share your photo album's secret URL:</p><p><code>${archive.url}</code></p><p><em>URL copied to clipboard</em></p>`)
@@ -57,7 +57,7 @@
     })
   }
 
-  function onToggleSelected (e) {
+  function onToggleSelected(e) {
     e.target.parentNode.classList.toggle('selected')
 
     // full src is dat://{key}/{path}, so strip dat://{key}
@@ -70,7 +70,7 @@
     else selectedImages.splice(idx, 1)
   }
 
-  async function onDeleteSelected () {
+  async function onDeleteSelected() {
     for (let path of selectedImages) {
       const imgTag = document.querySelector(`[src='${path}']`)
       if (imgTag) {
@@ -85,7 +85,7 @@
     selectedImages.length = 0
   }
 
-  function onEditInfo () {
+  function onEditInfo() {
     // TODO
     // replace the h1 and description with inputs
 
@@ -96,11 +96,10 @@
 
   // renderers
 
-  function renderApp () {
+  function renderApp() {
     // clear the prompt
     updatePrompt('')
     renderAlbum()
-    // addWebcamPhoto()
 
     document.getElementById('more-btn').addEventListener('click', function (e) {
       document.querySelector('.more-dropdown').classList.toggle('visible')
@@ -112,7 +111,9 @@
 
     document.querySelector('input[type="file"]').addEventListener('change', function (e) {
       if (e.target.files) {
-        const {files} = e.target
+        const {
+          files
+        } = e.target
         readFiles(files)
       }
     })
@@ -131,21 +132,50 @@
       e.preventDefault()
 
       const files = e.dataTransfer.files
+      console.log(files)
       readFiles(files)
 
       document.body.style.opacity = 1.0
       return false
     }, false)
   }
+  async function addSound(blob) {
+    // TODO: this is sort of working returns: 
+    // try to save to disk at the same time
+    var url = URL.createObjectURL(blob);
+    console.log(url, blob)
 
-  function readFiles (files) {
+    const arrayBuffer = await new Response(blob).arrayBuffer(); //: ArrayBuffer
+
+    console.log('arrayBuffer: ', arrayBuffer)
+
+    var filename = Math.random();
+    const path = `/images/${filename}.wav`
+
+    await archive.writeFile(path, arrayBuffer)
+    await archive.commit()
+
+      const el = document.createElement('div')
+      el.classList.add('img-container')
+     const snd = document.createElement('audio')
+     snd.controls = true
+     snd.src = path
+     el.appendChild(snd)
+     document.querySelector('.album-images').appendChild(el)
+  }
+
+  function readFiles(files) {
+    rec.exportWAV(addSound);
+
+
     for (let i = 0; i < files.length; i += 1) {
       const reader = new FileReader()
       const file = files[i]
 
       reader.onload = async function () {
+        // console.log(file)
         const path = `/images/${file.name}`
-        console.log('path', path)
+        // console.log('path', path)
 
         const orientation = readOrientationMetadata(reader.result)
 
@@ -156,6 +186,7 @@
         try {
           await archive.stat(path)
         } catch (e) {
+          // console.log(path, reader.result)
           await archive.writeFile(path, reader.result)
           await archive.commit()
           appendImage(path, orientation)
@@ -168,10 +199,10 @@
     }
   }
 
-  async function renderAlbum () {
+  async function renderAlbum() {
     try {
       const paths = await archive.readdir('images')
-      console.log('paths', paths)
+      // console.log('paths', paths)
       // TODO sort by ctime or mtime
       for (let i = 0; i < paths.length; i++) {
         const path = `/images/${paths[i]}`
@@ -185,11 +216,11 @@
     }
   }
 
-  function renderUAPrompt () {
+  function renderUAPrompt() {
     updatePrompt('<p>Sorry >.< This app only works in the Beaker Browser.</p><a class="btn primary" href="https://beakerbrowser.com/docs/install/">Install Beaker</a>')
   }
 
-  function appendImage (src, orientation = 1) {
+  function appendImage(src, orientation = 1) {
     if (typeof src !== 'string') return
 
     const el = document.createElement('div')
@@ -203,11 +234,13 @@
 
     el.appendChild(img)
     document.querySelector('.album-images').appendChild(el)
+
+  
   }
 
   // helpers
 
-  function updatePrompt (html) {
+  function updatePrompt(html) {
     if (typeof html !== 'string') return
     if (html.length) {
       document.querySelector('#prompt').innerHTML = `<div class="content">${html}</div>`
@@ -216,7 +249,7 @@
     }
   }
 
-  function readOrientationMetadata (buf) {
+  function readOrientationMetadata(buf) {
     const scanner = new DataView(buf)
     let idx = 0
     let value = 1 // Non-rotated is the default
@@ -250,5 +283,3 @@
     return value
   }
 })()
-
-

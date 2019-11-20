@@ -17,6 +17,17 @@
   </div>
   <!-- TODO put ellipsis in :after -->
 
+
+
+
+  <div id="controls">
+    <button id="recordButton">Record</button>
+    <button id="pauseButton" disabled>Pause</button>
+    <button id="stopButton" disabled>Stop</button>
+  </div>
+  <div id="formats">Format: start recording to see sample rate</div>
+  <h3>Recordings</h3>
+  <ol id="recordingsList"></ol>
   <header>
     <a href="{{DAT_ARCHIVE_URL}}/">
       &laquo All albums
@@ -63,6 +74,9 @@
   <textarea id="url"></textarea>
   <!-- <script src="{{DAT_ARCHIVE_URL}}/js/capture.js"></script> -->
   <script src="{{DAT_ARCHIVE_URL}}/js/album.js"></script>
+  <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
+  <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+  <script src="{{DAT_ARCHIVE_URL}}/js/recordSounds.js"></script>
 </body>
 
 </html>

@@ -118,8 +118,7 @@
       appendAlbum(new DatArchive(albums[i]))
       getAlbums(new DatArchive(albums[i])).then(pics => {
         cablesImages.push(pics)
-        // cablesImages.push(pics)
-        CABLES.patch.setVarValue('dataIn', cablesImages)
+        CABLES.patch.setVarValue('stringIn', JSON.stringify(cablesImages))
         console.log('dat  : ', cablesImages)
       })
     }

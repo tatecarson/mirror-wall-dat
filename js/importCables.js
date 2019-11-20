@@ -14,6 +14,9 @@ function patchInitialized() {
 
 function patchFinishedLoading() {
   // The patch is ready now, all assets have been loaded
+
+  // initialize audio 
+  init()
 }
 
 document.addEventListener('DOMContentLoaded', function(event) {
@@ -26,6 +29,14 @@ document.addEventListener('DOMContentLoaded', function(event) {
     onPatchLoaded: patchInitialized,
     onFinishedLoading: patchFinishedLoading
   });
+
+  // Need to initialze here first
+  CABLES.patch.config.triggerDensity = function (parameters) {
+    console.log('cables called... hello!?');
+  };
+  CABLES.patch.config.startMusic = function (parameters) {
+    console.log('cables called... hello!?');
+  };
 
   // define callbacks and variables here:
   // * https://docs.cables.gl/dev_embed_vars/dev_embed_vars.html

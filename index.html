@@ -9,15 +9,97 @@
   <link rel="stylesheet" href="css/header.css" />
   <link rel="stylesheet" href="css/buttons.css" />
   <link rel="stylesheet" href="css/prompt.css" />
+  <link rel="stylesheet" href="css/modal.css" />
+
 </head>
 
 <body>
+
   <div id="prompt">
     <div class="content">Loading...</div>
   </div>
-  <!-- TODO put ellipsis in :after -->
 
-  <header>
+
+  <!-- partial:index.partial.html -->
+  <section class="demo">
+    <div class="demo__card">
+      <h2 class="demo__title">Mirror Wall</h2>
+      <p>
+        This work explores the possibilities of a future internet built on distributed technologies. The work is participatory and is an experiment in what a network of distributed individuals can create. Participants follow a set of instructions to record a video message that when combined with
+        other participants realizes a score. This video message is then played back abstractly, as a series of 3d meshes, that vary in shape depending on how many participants are on the network, and how many messages have been contributed to the work. The work will evolve drastically over time.
+        Because of distributed internet technologies, copies of the work will exist on each participant's computer, the work will exist as long as people keep contributing to it and need not be maintained by the artist.
+      </p>
+
+      <p>
+        Studying new ways of structuring the internet is important because our current one is broken. Jenny Odell critiques the current internet as being the attention economy and sees art as a remedy because it allows us to perceive at different scales and tempos. Predominant social media apps
+        profit off our attention and encourage shorter and shorter attention spans that make it more difficult to connect with nature and each other. Alexander R. Galloway looks to distributed technologies as a "diagram for our current social formation." A distributed network is a network of
+        stronger social connections and a rejection of centralized, undemocratic power. Where a centralized internet reflects centralized political authority, a distributed internet redistributes this authority among its users. This work will explore these ideas through the generative process
+        allowed by this new technology.
+      </p>
+
+      <button data-modal-trigger="sample-modal" class="demo__btn demo__btn--secondary">Add Images</button>
+
+      <button data-modal-trigger="sample-modal3" class="demo__btn demo__btn--secondary">View Work</button>
+    </div>
+  </section>
+
+  <!-- Sample Modal -->
+  <div class="modal" data-modal-name="sample-modal">
+    <div class="modal__dialog">
+      <button class="modal__close" data-modal-dismiss>×</button>
+      <header>
+
+        <input type="text" name="friends" placeholder="Add your friends album!" id="friends">
+        <button class="add-friends-album btn primary">Submit</button>
+
+        <button class="create-album btn primary">Create album +</button>
+      </header>
+
+      <div class="albums-container">
+        <div class="create-album album" title="Create new album">
+          <div class="placeholder">+</div>
+          <div class="title">Create album</div>
+        </div>
+      </div>
+      <footer class="modal__footer">
+        <button data-modal-dismiss class="demo__btn">Dismiss</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Sample Modal 2 -->
+  <div class="modal" data-modal-name="sample-modal2" data-modal-dismiss>
+    <div class="modal__dialog">
+      <header class="modal__header">
+        <h3 class="modal__title">Clicking the background will dismiss the modal</h3>
+      </header>
+      <div class="modal__content">
+        <p>Simply add the data attribute "data-modal-dismiss" in the parent in order to do so</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Full Screen Modal -->
+  <div class="modal modal--fullscreen" data-modal-name="sample-modal3">
+    <div class="modal__dialog">
+      <button class="modal__close" data-modal-dismiss>×</button>
+      <header>
+
+        <button data-modal-dismiss class="demo__btn">Back</button>
+        <button class="btn primary" id="resume">Play</button>
+        <button class="btn primary" id="stop">Stop</button>
+
+      </header>
+      <div class="modal__content" id="canvas-div">
+        <canvas id="glcanvas" width="75%"></canvas>
+        <!-- <canvas id="glcanvas" width="100vw" height="100vh"></canvas> -->
+
+      </div>
+      <footer class="modal__footer">
+      </footer>
+    </div>
+  </div>
+  <!-- <header>
 
     <input type="text" name="friends" placeholder="Add your friends album!" id="friends">
     <button class="add-friends-album btn primary">Submit</button>
@@ -29,12 +111,24 @@
     <div class="create-album album" title="Create new album">
       <div class="placeholder">+</div>
       <div class="title">Create album</div>
-
-
     </div>
-  </div>
+  </div> -->
+  <!-- <div>
+    <button class="btn primary" id="resume">Play</button>
+    <button class="btn primary" id="stop">Stop</button>
+  </div> -->
+
+  <script src="js/granular/lodash.min.js"></script>
+  <script src="js/granular/granular.js"></script>
+  <script src="js/p5.min.js"></script>
+  <script src="js/p5.sound.min.js"></script>
+  <script src="js/music.js"></script>
+
+
+  <script src="js/modal.js"></script>
   <script src="js/index.js"></script>
-  <canvas id="glcanvas" width="100vw" height="100vh"></canvas>
+
+  <!-- <canvas id="glcanvas" width="100vw" height="100vh"></canvas> -->
   <libs />
   <script type="text/javascript" src="patch/js/patch.js"></script>
   <script src="js/importCables.js"></script>
