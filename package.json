@@ -11,7 +11,7 @@
   "dependencies": {
     "@cables/cables": "^0.4.0",
     "granular-js": "^0.6.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "p5": "^0.10.2"
   }
 }
